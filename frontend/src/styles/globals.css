@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+body {
+  @apply bg-slate-50 text-ink antialiased;
+}
+
+/* Print friendly brief */
+@media print {
+  nav, .no-print { display: none !important; }
+  .brief-print { background: white !important; }
+}
+
+/* Markdown content rendered for the clinician view — designed to feel like a clean clinical document */
+.markdown { @apply text-ink leading-relaxed; font-size: 15px; }
+.markdown h1 {
+  @apply text-2xl font-semibold tracking-tight mb-1;
+}
+.markdown h1 + p { @apply text-ink-muted text-sm mb-1; }
+.markdown h2 {
+  @apply text-sm font-semibold uppercase tracking-wider text-ink-muted mt-8 mb-3;
+  letter-spacing: 0.08em;
+}
+.markdown h2:first-of-type { @apply mt-6; }
+.markdown h3 { @apply text-base font-semibold mt-5 mb-2; }
+.markdown p { @apply my-2.5; }
+.markdown ul { @apply list-disc pl-5 my-2 marker:text-slate-400; }
+.markdown ol { @apply list-decimal pl-5 my-2 marker:text-slate-400; }
+.markdown li { @apply my-1; }
+.markdown blockquote {
+  @apply border-l-2 border-slate-300 pl-3 text-ink-muted text-sm italic my-3;
+}
+.markdown table {
+  @apply text-sm my-3 border-collapse w-full;
+}
+.markdown thead { @apply bg-slate-50; }
+.markdown th { @apply font-semibold text-left text-xs uppercase tracking-wide text-ink-muted px-3 py-2 border-b border-slate-200; }
+.markdown td { @apply px-3 py-2 border-b border-slate-100 align-top; }
+.markdown td:first-child { @apply text-ink-muted font-medium w-32; }
+.markdown code { @apply font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded; }
+.markdown strong { @apply font-semibold text-ink; }
+.markdown hr { @apply my-6 border-slate-200; }
+
+/* Print friendliness — clinical document on paper */
+@media print {
+  .markdown { font-size: 11pt; }
+  .markdown h2 { @apply mt-5; }
+  body, html { background: white !important; }
+  .brief-print article { @apply shadow-none border-0 p-0; }
+}
